@@ -1,0 +1,621 @@
+-- First drop columns if they already exist
+ALTER TABLE geral.empresa
+    DROP COLUMN IF EXISTS nome_fantasia,
+    DROP COLUMN IF EXISTS endereco_numero,
+    DROP COLUMN IF EXISTS endereco_complemento,
+    DROP COLUMN IF EXISTS bairro,
+    DROP COLUMN IF EXISTS cidade,
+    DROP COLUMN IF EXISTS estado,
+    DROP COLUMN IF EXISTS celular,
+    DROP COLUMN IF EXISTS data_inclusao_eventual;
+
+-- Then add them again with the correct types/defaults
+ALTER TABLE geral.empresa
+    ADD COLUMN nome_fantasia        text,
+    ADD COLUMN endereco_numero      text,
+    ADD COLUMN endereco_complemento text,
+    ADD COLUMN bairro               text,
+    ADD COLUMN cidade               text,
+    ADD COLUMN estado               text,
+    ADD COLUMN celular              text,
+    ADD COLUMN data_inclusao_eventual             date;
+
+-- Add comment to the 'eventual' column
+COMMENT ON COLUMN geral.empresa.eventual IS 'Cadastrado no Fretamento Eventual';
+
+
+-- Drop column if it already exists
+ALTER TABLE geral.veiculo
+    DROP COLUMN IF EXISTS modelo_ano,
+	DROP COLUMN IF EXISTS data_inclusao_eventual;
+
+-- Add column as integer
+ALTER TABLE geral.veiculo
+    ADD COLUMN modelo_ano integer,
+	ADD COLUMN data_inclusao_eventual date;
+
+
+
+
+-- Drop and recreate schema
+DROP SCHEMA IF EXISTS web CASCADE;
+CREATE SCHEMA web;
+
+
+-- DROP FUNCTION web.normalizar_email_usuario();
+
+CREATE OR REPLACE FUNCTION web.normalizar_email_usuario()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+BEGIN
+    IF NEW.email IS NOT NULL THEN
+        -- Normalize: lowercase, trim, and keep only a-z, 0-9, ., _, -, +
+--        NEW.email := lower(
+--            regexp_replace(
+--                btrim(NEW.email),
+--                '[^a-z0-9._+-]',
+--                '',
+--                'g'
+--            )
+--        );
+		NEW.email := lower(email);
+    END IF;
+
+    RETURN NEW;
+END;
+$function$
+;
+
+
+-- web.usuario definition
+
+-- Drop table
+
+-- DROP TABLE web.usuario;
+
+CREATE TABLE web.usuario (
+	id serial4 NOT NULL,
+	papel_nome text NOT NULL,
+	email text NOT NULL,
+	nome text NOT NULL,
+	cpf text NULL,
+	data_nascimento date NULL,
+	telefone text NULL,
+	senha text,
+	empresa_cnpj text NULL,
+	criado_em timestamp DEFAULT now() NULL,
+	atualizado_em timestamp DEFAULT now() NULL,
+	ativo bool DEFAULT true NOT NULL,
+	email_validado bool DEFAULT false NOT NULL,
+	CONSTRAINT usuario_cpf_key UNIQUE (cpf),
+	CONSTRAINT usuario_email_key UNIQUE (email),
+	CONSTRAINT usuario_pkey PRIMARY KEY (id),
+	CONSTRAINT usuario_empresa_cnpj_fkey FOREIGN KEY (empresa_cnpj) REFERENCES geral.empresa(cnpj),
+	CONSTRAINT usuario_papel_nome_fkey FOREIGN KEY (papel_nome) REFERENCES web.papel(nome)
+);
+CREATE INDEX idx_usuario_email ON web.usuario USING btree (email);
+CREATE INDEX idx_usuario_empresa_cnpj ON web.usuario USING btree (empresa_cnpj);
+
+-- Table Triggers
+
+create trigger trg_usuario_normalizar_email before
+insert
+    or
+update
+    of email on
+    web.usuario for each row execute function web.normalizar_email_usuario();
+
+
+
+
+DROP TABLE IF EXISTS web.papel;
+
+CREATE TABLE web.papel (
+    nome TEXT NOT NULL PRIMARY KEY
+);
+
+-- Insert sample roles into web.papel
+INSERT INTO web.papel (nome) VALUES
+    ('ANALISTA'),
+    ('EMPRESA'),
+    ('USUARIO_EMPRESA');
+	
+	
+	
+	
+
+-- ========================================================
+-- Master documento table
+-- ========================================================
+CREATE TABLE eventual.documento_tipo (
+    nome TEXT PRIMARY KEY,        -- e.g., 'ALVARA', 'CONTRATO_SOCIAL', 'CNH', 'CRLV'
+    descricao TEXT                -- optional description for clarity
+);
+
+CREATE TABLE eventual.documento (
+    id SERIAL PRIMARY KEY,
+    documento_tipo_nome TEXT NOT NULL REFERENCES eventual.documento_tipo(nome),
+    caminho TEXT NOT NULL,
+    tamanho BIGINT,
+    hash CHAR(32),
+    data_upload TIMESTAMP DEFAULT now(),
+
+    validade DATE NULL,
+    fluxo_pendencia_id INTEGER NULL REFERENCES eventual.fluxo_pendencia(id) ON DELETE SET NULL
+);
+
+-- ========================================================
+-- Link table: Documento -> Empresa
+-- ========================================================
+CREATE TABLE eventual.documento_empresa (
+    id INT PRIMARY KEY REFERENCES eventual.documento(id) ON DELETE CASCADE,
+    empresa_cnpj TEXT NOT NULL REFERENCES geral.empresa(cnpj)
+);
+
+-- ========================================================
+-- Link table: Documento -> Usuario
+-- ========================================================
+CREATE TABLE eventual.documento_usuario (
+    id INT PRIMARY KEY REFERENCES eventual.documento(id) ON DELETE CASCADE,
+    usuario_id INT NOT NULL REFERENCES web.usuario(id)
+);
+
+-- ========================================================
+-- Link table: Documento -> Veiculo
+-- ========================================================
+CREATE TABLE eventual.documento_veiculo (
+    id INT PRIMARY KEY REFERENCES eventual.documento(id) ON DELETE CASCADE,
+    veiculo_placa TEXT NOT NULL REFERENCES geral.veiculo(placa)
+);
+
+-- ========================================================
+-- Optional: enforce allowed document types per entity
+-- ========================================================
+CREATE TABLE eventual.documento_tipo_permissao (
+    tipo_nome TEXT NOT NULL REFERENCES eventual.documento_tipo(nome),
+    entidade_tipo TEXT NOT NULL CHECK (entidade_tipo IN ('empresa','usuario','veiculo')),
+    PRIMARY KEY(tipo_nome, entidade_tipo)
+);
+
+
+
+INSERT INTO eventual.documento_tipo (nome, descricao) VALUES
+    ('IDENTIDADE_RESPONSAVEL', 'Documento de identidade do responsável'),
+    ('CONTRATO_SOCIAL', 'Contrato social da empresa'),
+    ('PROCURACAO', 'Procuração'),
+    ('CRLV', 'Certificado de Registro e Licenciamento de Veículo'),
+	('CNH', 'Carteira Nacional de Habilitação'),
+	('NOTA_FISCAL', 'Nota Fiscal');
+
+	
+drop table if exists eventual.documento_motorista;
+drop table if exists eventual.motorista;
+CREATE TABLE eventual.motorista (
+    id SERIAL PRIMARY KEY,
+    empresa_cnpj text not NULL,
+    cpf TEXT NOT NULL,
+    cnh TEXT NOT NULL,
+    email TEXT,
+    nome TEXT,
+    data_cadastro TIMESTAMP DEFAULT NOW(),
+    CONSTRAINT motorista_empresa_cnpj_fkey FOREIGN KEY (empresa_cnpj) REFERENCES geral.empresa(cnpj)
+);
+	CREATE TABLE eventual.documento_motorista (
+    id SERIAL PRIMARY KEY,
+    motorista_id INT4 NOT NULL,
+    CONSTRAINT documento_motorista_id_fkey 
+        FOREIGN KEY (id) 
+        REFERENCES eventual.documento(id) 
+        ON DELETE CASCADE,
+    CONSTRAINT documento_motorista_motorista_id_fkey 
+        FOREIGN KEY (motorista_id) 
+        REFERENCES eventual.motorista(id)
+);
+
+
+
+
+
+
+
+drop table if exists eventual.viagem_tipo;
+create table eventual.viagem_tipo(
+nome text primary key
+);
+INSERT INTO eventual.viagem_tipo (nome) VALUES
+('Passeios Turísticos'),
+('Excursões'),
+('Eventos'),
+('Congressos'),
+('Shows'),
+('Festas'),
+('Encontros Religiosos'),
+('Encontros Esportivos'),
+('Outros');
+
+
+drop table if exists eventual.viagem;
+CREATE TABLE eventual.viagem (
+    id SERIAL PRIMARY KEY,
+    nome_contratante TEXT NOT NULL,
+    cpf_cnpj_contratante TEXT NOT NULL,
+    regiao_codigo TEXT NOT NULL REFERENCES geral.regiao(codigo),
+    municipio_origem TEXT NOT NULL REFERENCES geral.municipio(nome),
+    municipio_destino TEXT NOT NULL REFERENCES geral.municipio(nome),
+    ida_em TIMESTAMP NOT NULL,
+    volta_em TIMESTAMP NOT NULL,
+    viagem_tipo TEXT NOT NULL REFERENCES eventual.viagem_tipo(nome),
+    veiculo_placa TEXT NOT NULL REFERENCES geral.veiculo(placa),
+    motorista_id INT NOT NULL REFERENCES eventual.motorista(id),
+    motorista_aux_id INT REFERENCES eventual.motorista(id),
+    descricao TEXT
+);
+
+
+DROP TABLE IF EXISTS eventual.passageiro;
+CREATE TABLE eventual.passageiro (
+    id SERIAL PRIMARY KEY,
+    viagem_id INT NOT NULL REFERENCES eventual.viagem(id) ON DELETE CASCADE,
+    nome TEXT NOT NULL,
+    cpf TEXT NOT null,
+    CONSTRAINT passageiro_unique_viagem_cpf UNIQUE (viagem_id, cpf)
+);
+
+-- eventual.documento_usuario definition
+
+DROP TABLE IF EXISTS eventual.documento_viagem;
+
+CREATE TABLE eventual.documento_viagem (
+    id INT4 PRIMARY KEY
+        REFERENCES eventual.documento(id)
+        ON DELETE CASCADE,
+    viagem_id INT4 NOT NULL
+        REFERENCES eventual.viagem(id)
+);
+
+
+
+
+
+
+
+
+
+
+-------------------------------- novo fluxo
+
+
+-- 1. DROP VIEW (depends on fluxo_pendencia)
+DROP VIEW IF EXISTS eventual.v_pendencia_atual;
+
+-- 2. DROP TRIGGERS (before dropping table)
+DROP TRIGGER IF EXISTS trg_valida_entidade ON eventual.fluxo_pendencia;
+DROP TRIGGER IF EXISTS trg_evitar_status_repetido ON eventual.fluxo_pendencia;
+DROP TRIGGER IF EXISTS trg_analista_obrigatorio ON eventual.fluxo_pendencia;
+DROP TRIGGER IF EXISTS trg_motivo_obrigatorio ON eventual.fluxo_pendencia;
+
+-- 3. DROP TRIGGER FUNCTIONS
+DROP FUNCTION IF EXISTS eventual.fn_valida_entidade();
+DROP FUNCTION IF EXISTS eventual.fn_evitar_status_repetido();
+DROP FUNCTION IF EXISTS eventual.fn_analista_obrigatorio();
+DROP FUNCTION IF EXISTS eventual.fn_motivo_obrigatorio();
+
+
+-- 4. DROP MAIN FUNCTION (avancar_pendencia)
+DROP FUNCTION IF EXISTS eventual.avancar_pendencia(text, text, text, text, text);
+
+-- 5. DROP MAIN TABLE (fluxo_pendencia)
+DROP TABLE IF EXISTS eventual.fluxo_pendencia;
+
+-- 6. DROP SUPPORT TABLES
+DROP TABLE IF EXISTS eventual.tipo_entidade_pendencia;
+DROP TABLE IF EXISTS eventual.status_pendencia;
+
+-- 7. OPTIONAL: remove the "eventual_status" column from entities
+-- (Uncomment these if you want a totally clean slate)
+
+-- ALTER TABLE geral.empresa DROP COLUMN IF EXISTS eventual_status;
+-- ALTER TABLE geral.veiculo DROP COLUMN IF EXISTS eventual_status;
+-- ALTER TABLE eventual.motorista DROP COLUMN IF EXISTS eventual_status;
+
+-- 8. DROPPING THE COMMENTED-OUT TABLE (only if you want)
+-- DROP TABLE IF EXISTS eventual.tipo_pendencia;
+
+
+
+
+
+
+
+--DROP TABLE IF EXISTS eventual.status_pendencia;
+CREATE TABLE eventual.status_pendencia (
+    status TEXT PRIMARY KEY,
+    nome TEXT NOT NULL
+);
+
+INSERT INTO eventual.status_pendencia VALUES
+('AGUARDANDO_ANALISE', 'Aguardando Análise'),
+('EM_ANALISE',          'Em Análise'),
+('APROVADO',            'Aprovado'),
+('REJEITADO',           'Rejeitado');
+
+
+--DROP TABLE IF EXISTS eventual.tipo_pendencia;
+--CREATE TABLE eventual.tipo_pendencia (
+--    tipo TEXT PRIMARY KEY,
+--    nome TEXT NOT NULL
+--);
+--
+--INSERT INTO eventual.tipo_pendencia VALUES
+--('CADASTRO',  'Cadastro'),
+--('ALTERACAO', 'Alteração');
+
+
+--DROP TABLE IF EXISTS eventual.tipo_entidade_pendencia;
+CREATE TABLE eventual.tipo_entidade_pendencia (
+    tipo TEXT PRIMARY KEY,
+    descricao TEXT NOT NULL
+);
+
+INSERT INTO eventual.tipo_entidade_pendencia VALUES
+('EMPRESA',   'Empresa'),
+('VEICULO',   'Veículo'),
+('MOTORISTA', 'Motorista');
+
+
+--DROP TABLE IF EXISTS eventual.fluxo_pendencia;
+CREATE TABLE eventual.fluxo_pendencia (
+    id SERIAL PRIMARY KEY,
+    criado_em TIMESTAMP NOT NULL DEFAULT now(),
+    entidade_tipo TEXT NOT NULL REFERENCES eventual.tipo_entidade_pendencia(tipo),
+    entidade_id TEXT NOT NULL,
+    status TEXT NOT NULL REFERENCES eventual.status_pendencia(status),
+    analista TEXT NULL REFERENCES web.usuario(email),
+    motivo TEXT NULL
+);
+CREATE INDEX fluxo_pendencia_entidade_idx ON eventual.fluxo_pendencia(entidade_tipo, entidade_id);
+CREATE INDEX fluxo_pendencia_latest_idx ON eventual.fluxo_pendencia (entidade_tipo, entidade_id, criado_em desc);
+
+
+CREATE OR REPLACE FUNCTION eventual.fn_valida_entidade()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- EMPRESA
+    IF NEW.entidade_tipo = 'EMPRESA' THEN
+        IF NOT EXISTS (SELECT 1 FROM geral.empresa e WHERE e.cnpj::text = NEW.entidade_id) THEN
+            RAISE EXCEPTION 'Entidade EMPRESA % does not exist', NEW.entidade_id;
+        END IF;
+
+    -- VEICULO
+    ELSIF NEW.entidade_tipo = 'VEICULO' THEN
+        IF NOT EXISTS (SELECT 1 FROM geral.veiculo v WHERE v.placa = NEW.entidade_id) THEN
+            RAISE EXCEPTION 'Entidade VEICULO % does not exist', NEW.entidade_id;
+        END IF;
+
+    -- MOTORISTA
+    ELSIF NEW.entidade_tipo = 'MOTORISTA' THEN
+        IF NOT EXISTS (SELECT 1 FROM eventual.motorista m WHERE m.id::text = NEW.entidade_id) THEN
+            RAISE EXCEPTION 'Entidade MOTORISTA % does not exist', NEW.entidade_id;
+        END IF;
+
+    ELSE
+        RAISE EXCEPTION 'Unknown entidade_tipo: %', NEW.entidade_tipo;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_valida_entidade
+BEFORE INSERT ON eventual.fluxo_pendencia
+FOR EACH ROW EXECUTE FUNCTION eventual.fn_valida_entidade();
+
+
+
+CREATE OR REPLACE FUNCTION eventual.fn_evitar_status_repetido()
+RETURNS TRIGGER AS $$
+DECLARE
+    ultimo RECORD;
+BEGIN
+    SELECT *
+    INTO ultimo
+    FROM eventual.fluxo_pendencia fp
+    WHERE fp.entidade_tipo = NEW.entidade_tipo
+      AND fp.entidade_id   = NEW.entidade_id
+    ORDER BY fp.criado_em DESC
+    LIMIT 1;
+
+    IF ultimo IS NOT NULL THEN
+        -- same status? block
+        IF ultimo.status = NEW.status THEN
+            RAISE EXCEPTION
+                'Cannot insert duplicate status %. Last status for this pendência is already %.',
+                NEW.status, ultimo.status;
+        END IF;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_evitar_status_repetido
+BEFORE INSERT ON eventual.fluxo_pendencia
+FOR EACH ROW EXECUTE FUNCTION eventual.fn_evitar_status_repetido();
+
+
+CREATE OR REPLACE FUNCTION eventual.fn_analista_obrigatorio()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- analista must be present whenever status is NOT AGUARDANDO_ANALISE
+    IF NEW.status <> 'AGUARDANDO_ANALISE' THEN
+        IF NEW.analista IS NULL OR btrim(NEW.analista) = '' THEN
+            RAISE EXCEPTION 'analista cannot be NULL when status = %', NEW.status;
+        END IF;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-----------------------------------------------------------
+-- 2) Create new function: fn_motivo_obrigatorio
+-----------------------------------------------------------
+CREATE OR REPLACE FUNCTION eventual.fn_motivo_obrigatorio()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- motivo required ONLY when approving or rejecting
+    IF NEW.status IN ('APROVADO', 'REJEITADO') THEN
+        IF NEW.motivo IS NULL OR btrim(NEW.motivo) = '' THEN
+            RAISE EXCEPTION 'motivo cannot be NULL or empty when status = %', NEW.status;
+        END IF;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_analista_obrigatorio
+BEFORE INSERT ON eventual.fluxo_pendencia
+FOR EACH ROW EXECUTE FUNCTION eventual.fn_analista_obrigatorio();
+CREATE TRIGGER trg_motivo_obrigatorio
+BEFORE INSERT ON eventual.fluxo_pendencia
+FOR EACH ROW EXECUTE FUNCTION eventual.fn_motivo_obrigatorio();
+
+
+
+CREATE or replace VIEW eventual.v_pendencia_atual AS
+SELECT DISTINCT ON (entidade_tipo, entidade_id)
+    id, entidade_tipo, entidade_id, status, analista, criado_em, motivo
+FROM eventual.fluxo_pendencia
+ORDER BY entidade_tipo, entidade_id, criado_em DESC;
+
+
+--ALTER TABLE geral.empresa ADD COLUMN eventual_status TEXT;
+--ALTER TABLE geral.veiculo ADD COLUMN eventual_status TEXT;
+--ALTER TABLE eventual.motorista ADD COLUMN eventual_status TEXT;
+
+
+
+CREATE or replace FUNCTION eventual.avancar_pendencia(
+    p_fluxo_id integer,
+    p_status text,
+    p_analista text DEFAULT NULL::text,
+    p_motivo text DEFAULT NULL::text
+) RETURNS void
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_entidade_tipo text;
+    v_entidade_id   text;
+    ultimo          RECORD;
+BEGIN
+    -- Find referenced entity from the given fluxo row
+    SELECT entidade_tipo, entidade_id
+    INTO v_entidade_tipo, v_entidade_id
+    FROM eventual.fluxo_pendencia
+    WHERE id = p_fluxo_id;
+
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Pendência id % not found', p_fluxo_id;
+    END IF;
+
+    -- Get last pendência for same entity
+    SELECT *
+    INTO ultimo
+    FROM eventual.fluxo_pendencia
+    WHERE entidade_tipo = v_entidade_tipo
+      AND entidade_id   = v_entidade_id
+    ORDER BY criado_em DESC
+    LIMIT 1;
+
+    -- -----------------------------------------
+    -- SPECIAL LOGIC FOR EM_ANALISE
+    -- -----------------------------------------
+    IF ultimo.status = 'EM_ANALISE' AND p_status = 'EM_ANALISE' THEN
+
+        IF ultimo.analista = p_analista THEN
+            -- Same analista → no-op (silent success)
+            RETURN;
+        ELSE
+            -- Different analista → explicit error
+            RAISE EXCEPTION
+                'Pendência already being analyzed by another analista: %',
+                ultimo.analista;
+        END IF;
+
+    END IF;
+
+    -- Otherwise, perform normal insert (triggers will validate)
+    INSERT INTO eventual.fluxo_pendencia (
+        entidade_tipo, entidade_id, status, analista, motivo
+    )
+    VALUES (v_entidade_tipo, v_entidade_id, p_status, p_analista, p_motivo);
+
+    -- Sync entity status
+    IF v_entidade_tipo = 'EMPRESA' THEN
+        UPDATE geral.empresa
+        SET eventual_status = p_status
+        WHERE cnpj = v_entidade_id;
+
+    ELSIF v_entidade_tipo = 'VEICULO' THEN
+        UPDATE geral.veiculo
+        SET eventual_status = p_status
+        WHERE placa = v_entidade_id;
+
+    ELSIF v_entidade_tipo = 'MOTORISTA' THEN
+        UPDATE eventual.motorista
+        SET eventual_status = p_status
+        WHERE id::text = v_entidade_id;
+
+    END IF;
+
+    -- -----------------------------------------
+    -- NEW: approve documents when pendência is approved
+    -- -----------------------------------------
+    IF p_status = 'APROVADO' THEN
+        UPDATE eventual.documento
+        SET aprovado_em = NOW()
+        WHERE entidade_tipo = v_entidade_tipo
+          AND entidade_id   = v_entidade_id
+          AND aprovado_em IS NULL;
+    END IF;
+
+END;
+$$;
+
+
+
+
+
+CREATE TABLE web.token_validacao_email (
+    id SERIAL PRIMARY KEY,
+    usuario_id INT NOT NULL REFERENCES web.usuario(id) ON DELETE CASCADE,
+    token TEXT NOT NULL UNIQUE,
+    criado_em TIMESTAMP NOT NULL DEFAULT NOW(),
+    expira_em TIMESTAMP NOT NULL
+);
+
+CREATE INDEX idx_token_validacao_email_token ON web.token_validacao_email(token);
+CREATE INDEX idx_token_validacao_email_usuario ON web.token_validacao_email(usuario_id);
+
+
+
+CREATE OR REPLACE FUNCTION web.lowercase_email_usuario()
+RETURNS trigger AS $$
+BEGIN
+    IF NEW.email IS NOT NULL THEN
+        NEW.email := lower(NEW.email);
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER trg_usuario_lowercase_email
+BEFORE INSERT OR UPDATE OF email
+ON web.usuario
+FOR EACH ROW
+EXECUTE FUNCTION web.lowercase_email_usuario();
+

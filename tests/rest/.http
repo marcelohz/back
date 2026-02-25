@@ -1,0 +1,27 @@
+### Login
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@gmail.com",
+  "password": "test"
+}
+
+### Login Error Case
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+  "email": "test2",
+  "password": "test"
+}
+
+### Access Protected Endpoint
+GET http://localhost:5000/auth/protected
+
+### Logout
+POST http://localhost:5000/auth/logout
+Content-Type: application/json
+
+### Access Admin Data (Requires Admin Role)
+GET http://localhost:5000/auth/getAdminData

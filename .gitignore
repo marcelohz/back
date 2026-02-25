@@ -1,0 +1,65 @@
+# Arquivos de cache do Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Ambientes virtuais
+.venv-wsl/
+.venv/
+venv/
+env/
+ENV/
+
+# Configurações do editor/IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Arquivos de log e banco de dados local
+*.log
+*.sqlite3
+instance/
+*.db
+
+# Configurações de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de build/distribuição
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Cache do pip
+pip-wheel-metadata/
+__pypackages__/
+
+# Arquivos do Flask
+*.pid
+*.seed
+*.bak
+
+# Arquivos de testes
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+
+# Variáveis de ambiente
+.env
+*.env
+
+# Docker
+docker-compose.override.yml
+*.pid
+
+
+/comando dump chat.txt
+/pytest.ini
+/all_py_files.txt
+/documentos/
+/antes_mudar_para_pendecia_id
