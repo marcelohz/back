@@ -5,7 +5,7 @@
 -- Dumped from database version 14.18
 -- Dumped by pg_dump version 17.0
 
--- Started on 2026-03-03 12:18:02
+-- Started on 2026-03-03 12:31:39
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -799,6 +799,9 @@ CRLV	Certificado de Registro e Licenciamento de Veículo
 CNH	Carteira Nacional de Habilitação
 NOTA_FISCAL	Nota Fiscal
 IDENTIDADE_SOCIO	Documento de identidade do sócio
+CNAE_FISCAL	CNAE Fiscal
+CARTAO_CNPJ	Cartão CNPJ
+ALVARA	Alvará
 \.
 
 
@@ -1687,7 +1690,7 @@ ALTER TABLE ONLY web.usuario
     ADD CONSTRAINT usuario_papel_nome_fkey FOREIGN KEY (papel_nome) REFERENCES web.papel(nome);
 
 
--- Completed on 2026-03-03 12:18:02
+-- Completed on 2026-03-03 12:31:39
 
 --
 -- PostgreSQL database dump complete
