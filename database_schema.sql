@@ -5,7 +5,7 @@
 -- Dumped from database version 14.18
 -- Dumped by pg_dump version 17.0
 
--- Started on 2026-03-03 12:31:39
+-- Started on 2026-03-10 10:13:13
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -36,7 +36,7 @@ CREATE SCHEMA web;
 
 
 --
--- TOC entry 708 (class 1255 OID 816851)
+-- TOC entry 730 (class 1255 OID 816851)
 -- Name: avancar_pendencia(integer, text, text, text); Type: FUNCTION; Schema: eventual; Owner: -
 --
 
@@ -114,7 +114,7 @@ $$;
 
 
 --
--- TOC entry 707 (class 1255 OID 816845)
+-- TOC entry 729 (class 1255 OID 816845)
 -- Name: fn_analista_obrigatorio(); Type: FUNCTION; Schema: eventual; Owner: -
 --
 
@@ -135,7 +135,7 @@ $$;
 
 
 --
--- TOC entry 704 (class 1255 OID 816843)
+-- TOC entry 726 (class 1255 OID 816843)
 -- Name: fn_evitar_status_repetido(); Type: FUNCTION; Schema: eventual; Owner: -
 --
 
@@ -167,7 +167,7 @@ $$;
 
 
 --
--- TOC entry 705 (class 1255 OID 816935)
+-- TOC entry 727 (class 1255 OID 816935)
 -- Name: fn_motivo_obrigatorio(); Type: FUNCTION; Schema: eventual; Owner: -
 --
 
@@ -188,7 +188,7 @@ $$;
 
 
 --
--- TOC entry 703 (class 1255 OID 816841)
+-- TOC entry 725 (class 1255 OID 816841)
 -- Name: fn_valida_entidade(); Type: FUNCTION; Schema: eventual; Owner: -
 --
 
@@ -217,7 +217,7 @@ $$;
 
 
 --
--- TOC entry 706 (class 1255 OID 816852)
+-- TOC entry 728 (class 1255 OID 816852)
 -- Name: normalizar_email_usuario(); Type: FUNCTION; Schema: web; Owner: -
 --
 
@@ -248,7 +248,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 436 (class 1259 OID 800010)
+-- TOC entry 437 (class 1259 OID 800010)
 -- Name: documento; Type: TABLE; Schema: eventual; Owner: -
 --
 
@@ -268,7 +268,7 @@ CREATE TABLE eventual.documento (
 
 
 --
--- TOC entry 437 (class 1259 OID 800024)
+-- TOC entry 438 (class 1259 OID 800024)
 -- Name: documento_empresa; Type: TABLE; Schema: eventual; Owner: -
 --
 
@@ -279,7 +279,7 @@ CREATE TABLE eventual.documento_empresa (
 
 
 --
--- TOC entry 435 (class 1259 OID 800009)
+-- TOC entry 436 (class 1259 OID 800009)
 -- Name: documento_id_seq; Type: SEQUENCE; Schema: eventual; Owner: -
 --
 
@@ -293,8 +293,8 @@ CREATE SEQUENCE eventual.documento_id_seq
 
 
 --
--- TOC entry 4328 (class 0 OID 0)
--- Dependencies: 435
+-- TOC entry 4375 (class 0 OID 0)
+-- Dependencies: 436
 -- Name: documento_id_seq; Type: SEQUENCE OWNED BY; Schema: eventual; Owner: -
 --
 
@@ -302,7 +302,7 @@ ALTER SEQUENCE eventual.documento_id_seq OWNED BY eventual.documento.id;
 
 
 --
--- TOC entry 444 (class 1259 OID 800210)
+-- TOC entry 445 (class 1259 OID 800210)
 -- Name: documento_motorista; Type: TABLE; Schema: eventual; Owner: -
 --
 
@@ -313,7 +313,7 @@ CREATE TABLE eventual.documento_motorista (
 
 
 --
--- TOC entry 443 (class 1259 OID 800209)
+-- TOC entry 444 (class 1259 OID 800209)
 -- Name: documento_motorista_id_seq; Type: SEQUENCE; Schema: eventual; Owner: -
 --
 
@@ -327,8 +327,8 @@ CREATE SEQUENCE eventual.documento_motorista_id_seq
 
 
 --
--- TOC entry 4329 (class 0 OID 0)
--- Dependencies: 443
+-- TOC entry 4376 (class 0 OID 0)
+-- Dependencies: 444
 -- Name: documento_motorista_id_seq; Type: SEQUENCE OWNED BY; Schema: eventual; Owner: -
 --
 
@@ -336,7 +336,7 @@ ALTER SEQUENCE eventual.documento_motorista_id_seq OWNED BY eventual.documento_m
 
 
 --
--- TOC entry 434 (class 1259 OID 800002)
+-- TOC entry 435 (class 1259 OID 800002)
 -- Name: documento_tipo; Type: TABLE; Schema: eventual; Owner: -
 --
 
@@ -347,7 +347,7 @@ CREATE TABLE eventual.documento_tipo (
 
 
 --
--- TOC entry 440 (class 1259 OID 800073)
+-- TOC entry 441 (class 1259 OID 800073)
 -- Name: documento_tipo_permissao; Type: TABLE; Schema: eventual; Owner: -
 --
 
@@ -359,7 +359,7 @@ CREATE TABLE eventual.documento_tipo_permissao (
 
 
 --
--- TOC entry 438 (class 1259 OID 800041)
+-- TOC entry 439 (class 1259 OID 800041)
 -- Name: documento_usuario; Type: TABLE; Schema: eventual; Owner: -
 --
 
@@ -370,7 +370,7 @@ CREATE TABLE eventual.documento_usuario (
 
 
 --
--- TOC entry 439 (class 1259 OID 800056)
+-- TOC entry 440 (class 1259 OID 800056)
 -- Name: documento_veiculo; Type: TABLE; Schema: eventual; Owner: -
 --
 
@@ -381,7 +381,7 @@ CREATE TABLE eventual.documento_veiculo (
 
 
 --
--- TOC entry 450 (class 1259 OID 808150)
+-- TOC entry 451 (class 1259 OID 808150)
 -- Name: documento_viagem; Type: TABLE; Schema: eventual; Owner: -
 --
 
@@ -392,7 +392,7 @@ CREATE TABLE eventual.documento_viagem (
 
 
 --
--- TOC entry 456 (class 1259 OID 816815)
+-- TOC entry 457 (class 1259 OID 816815)
 -- Name: fluxo_pendencia; Type: TABLE; Schema: eventual; Owner: -
 --
 
@@ -403,12 +403,13 @@ CREATE TABLE eventual.fluxo_pendencia (
     entidade_id text NOT NULL,
     status text NOT NULL,
     analista text,
-    motivo text
+    motivo text,
+    dados_propostos jsonb
 );
 
 
 --
--- TOC entry 455 (class 1259 OID 816814)
+-- TOC entry 456 (class 1259 OID 816814)
 -- Name: fluxo_pendencia_id_seq; Type: SEQUENCE; Schema: eventual; Owner: -
 --
 
@@ -422,8 +423,8 @@ CREATE SEQUENCE eventual.fluxo_pendencia_id_seq
 
 
 --
--- TOC entry 4330 (class 0 OID 0)
--- Dependencies: 455
+-- TOC entry 4377 (class 0 OID 0)
+-- Dependencies: 456
 -- Name: fluxo_pendencia_id_seq; Type: SEQUENCE OWNED BY; Schema: eventual; Owner: -
 --
 
@@ -431,7 +432,7 @@ ALTER SEQUENCE eventual.fluxo_pendencia_id_seq OWNED BY eventual.fluxo_pendencia
 
 
 --
--- TOC entry 442 (class 1259 OID 800195)
+-- TOC entry 443 (class 1259 OID 800195)
 -- Name: motorista; Type: TABLE; Schema: eventual; Owner: -
 --
 
@@ -448,7 +449,7 @@ CREATE TABLE eventual.motorista (
 
 
 --
--- TOC entry 441 (class 1259 OID 800194)
+-- TOC entry 442 (class 1259 OID 800194)
 -- Name: motorista_id_seq; Type: SEQUENCE; Schema: eventual; Owner: -
 --
 
@@ -462,8 +463,8 @@ CREATE SEQUENCE eventual.motorista_id_seq
 
 
 --
--- TOC entry 4331 (class 0 OID 0)
--- Dependencies: 441
+-- TOC entry 4378 (class 0 OID 0)
+-- Dependencies: 442
 -- Name: motorista_id_seq; Type: SEQUENCE OWNED BY; Schema: eventual; Owner: -
 --
 
@@ -471,7 +472,7 @@ ALTER SEQUENCE eventual.motorista_id_seq OWNED BY eventual.motorista.id;
 
 
 --
--- TOC entry 449 (class 1259 OID 808120)
+-- TOC entry 450 (class 1259 OID 808120)
 -- Name: passageiro; Type: TABLE; Schema: eventual; Owner: -
 --
 
@@ -484,7 +485,7 @@ CREATE TABLE eventual.passageiro (
 
 
 --
--- TOC entry 448 (class 1259 OID 808119)
+-- TOC entry 449 (class 1259 OID 808119)
 -- Name: passageiro_id_seq; Type: SEQUENCE; Schema: eventual; Owner: -
 --
 
@@ -498,8 +499,8 @@ CREATE SEQUENCE eventual.passageiro_id_seq
 
 
 --
--- TOC entry 4332 (class 0 OID 0)
--- Dependencies: 448
+-- TOC entry 4379 (class 0 OID 0)
+-- Dependencies: 449
 -- Name: passageiro_id_seq; Type: SEQUENCE OWNED BY; Schema: eventual; Owner: -
 --
 
@@ -507,7 +508,7 @@ ALTER SEQUENCE eventual.passageiro_id_seq OWNED BY eventual.passageiro.id;
 
 
 --
--- TOC entry 453 (class 1259 OID 816800)
+-- TOC entry 454 (class 1259 OID 816800)
 -- Name: status_pendencia; Type: TABLE; Schema: eventual; Owner: -
 --
 
@@ -518,7 +519,7 @@ CREATE TABLE eventual.status_pendencia (
 
 
 --
--- TOC entry 454 (class 1259 OID 816807)
+-- TOC entry 455 (class 1259 OID 816807)
 -- Name: tipo_entidade_pendencia; Type: TABLE; Schema: eventual; Owner: -
 --
 
@@ -529,7 +530,7 @@ CREATE TABLE eventual.tipo_entidade_pendencia (
 
 
 --
--- TOC entry 457 (class 1259 OID 816847)
+-- TOC entry 458 (class 1259 OID 816847)
 -- Name: v_pendencia_atual; Type: VIEW; Schema: eventual; Owner: -
 --
 
@@ -540,13 +541,14 @@ CREATE VIEW eventual.v_pendencia_atual AS
     fluxo_pendencia.status,
     fluxo_pendencia.analista,
     fluxo_pendencia.criado_em,
-    fluxo_pendencia.motivo
+    fluxo_pendencia.motivo,
+    fluxo_pendencia.dados_propostos
    FROM eventual.fluxo_pendencia
   ORDER BY fluxo_pendencia.entidade_tipo, fluxo_pendencia.entidade_id, fluxo_pendencia.criado_em DESC;
 
 
 --
--- TOC entry 447 (class 1259 OID 808062)
+-- TOC entry 448 (class 1259 OID 808062)
 -- Name: viagem; Type: TABLE; Schema: eventual; Owner: -
 --
 
@@ -563,12 +565,13 @@ CREATE TABLE eventual.viagem (
     veiculo_placa text NOT NULL,
     motorista_id integer NOT NULL,
     motorista_aux_id integer,
-    descricao text
+    descricao text,
+    empresa_cnpj text NOT NULL
 );
 
 
 --
--- TOC entry 446 (class 1259 OID 808061)
+-- TOC entry 447 (class 1259 OID 808061)
 -- Name: viagem_id_seq; Type: SEQUENCE; Schema: eventual; Owner: -
 --
 
@@ -582,8 +585,8 @@ CREATE SEQUENCE eventual.viagem_id_seq
 
 
 --
--- TOC entry 4333 (class 0 OID 0)
--- Dependencies: 446
+-- TOC entry 4380 (class 0 OID 0)
+-- Dependencies: 447
 -- Name: viagem_id_seq; Type: SEQUENCE OWNED BY; Schema: eventual; Owner: -
 --
 
@@ -591,7 +594,7 @@ ALTER SEQUENCE eventual.viagem_id_seq OWNED BY eventual.viagem.id;
 
 
 --
--- TOC entry 445 (class 1259 OID 808001)
+-- TOC entry 446 (class 1259 OID 808001)
 -- Name: viagem_tipo; Type: TABLE; Schema: eventual; Owner: -
 --
 
@@ -601,7 +604,7 @@ CREATE TABLE eventual.viagem_tipo (
 
 
 --
--- TOC entry 431 (class 1259 OID 799650)
+-- TOC entry 432 (class 1259 OID 799650)
 -- Name: papel; Type: TABLE; Schema: web; Owner: -
 --
 
@@ -611,7 +614,7 @@ CREATE TABLE web.papel (
 
 
 --
--- TOC entry 452 (class 1259 OID 816620)
+-- TOC entry 453 (class 1259 OID 816620)
 -- Name: token_validacao_email; Type: TABLE; Schema: web; Owner: -
 --
 
@@ -625,7 +628,7 @@ CREATE TABLE web.token_validacao_email (
 
 
 --
--- TOC entry 451 (class 1259 OID 816619)
+-- TOC entry 452 (class 1259 OID 816619)
 -- Name: token_validacao_email_id_seq; Type: SEQUENCE; Schema: web; Owner: -
 --
 
@@ -639,8 +642,8 @@ CREATE SEQUENCE web.token_validacao_email_id_seq
 
 
 --
--- TOC entry 4334 (class 0 OID 0)
--- Dependencies: 451
+-- TOC entry 4381 (class 0 OID 0)
+-- Dependencies: 452
 -- Name: token_validacao_email_id_seq; Type: SEQUENCE OWNED BY; Schema: web; Owner: -
 --
 
@@ -648,7 +651,7 @@ ALTER SEQUENCE web.token_validacao_email_id_seq OWNED BY web.token_validacao_ema
 
 
 --
--- TOC entry 433 (class 1259 OID 799667)
+-- TOC entry 434 (class 1259 OID 799667)
 -- Name: usuario; Type: TABLE; Schema: web; Owner: -
 --
 
@@ -670,7 +673,7 @@ CREATE TABLE web.usuario (
 
 
 --
--- TOC entry 432 (class 1259 OID 799666)
+-- TOC entry 433 (class 1259 OID 799666)
 -- Name: usuario_id_seq; Type: SEQUENCE; Schema: web; Owner: -
 --
 
@@ -684,8 +687,8 @@ CREATE SEQUENCE web.usuario_id_seq
 
 
 --
--- TOC entry 4335 (class 0 OID 0)
--- Dependencies: 432
+-- TOC entry 4382 (class 0 OID 0)
+-- Dependencies: 433
 -- Name: usuario_id_seq; Type: SEQUENCE OWNED BY; Schema: web; Owner: -
 --
 
@@ -693,7 +696,7 @@ ALTER SEQUENCE web.usuario_id_seq OWNED BY web.usuario.id;
 
 
 --
--- TOC entry 4026 (class 2604 OID 800013)
+-- TOC entry 4072 (class 2604 OID 800013)
 -- Name: documento id; Type: DEFAULT; Schema: eventual; Owner: -
 --
 
@@ -701,7 +704,7 @@ ALTER TABLE ONLY eventual.documento ALTER COLUMN id SET DEFAULT nextval('eventua
 
 
 --
--- TOC entry 4031 (class 2604 OID 800213)
+-- TOC entry 4077 (class 2604 OID 800213)
 -- Name: documento_motorista id; Type: DEFAULT; Schema: eventual; Owner: -
 --
 
@@ -709,7 +712,7 @@ ALTER TABLE ONLY eventual.documento_motorista ALTER COLUMN id SET DEFAULT nextva
 
 
 --
--- TOC entry 4036 (class 2604 OID 816818)
+-- TOC entry 4082 (class 2604 OID 816818)
 -- Name: fluxo_pendencia id; Type: DEFAULT; Schema: eventual; Owner: -
 --
 
@@ -717,7 +720,7 @@ ALTER TABLE ONLY eventual.fluxo_pendencia ALTER COLUMN id SET DEFAULT nextval('e
 
 
 --
--- TOC entry 4029 (class 2604 OID 800198)
+-- TOC entry 4075 (class 2604 OID 800198)
 -- Name: motorista id; Type: DEFAULT; Schema: eventual; Owner: -
 --
 
@@ -725,7 +728,7 @@ ALTER TABLE ONLY eventual.motorista ALTER COLUMN id SET DEFAULT nextval('eventua
 
 
 --
--- TOC entry 4033 (class 2604 OID 808123)
+-- TOC entry 4079 (class 2604 OID 808123)
 -- Name: passageiro id; Type: DEFAULT; Schema: eventual; Owner: -
 --
 
@@ -733,7 +736,7 @@ ALTER TABLE ONLY eventual.passageiro ALTER COLUMN id SET DEFAULT nextval('eventu
 
 
 --
--- TOC entry 4032 (class 2604 OID 808065)
+-- TOC entry 4078 (class 2604 OID 808065)
 -- Name: viagem id; Type: DEFAULT; Schema: eventual; Owner: -
 --
 
@@ -741,7 +744,7 @@ ALTER TABLE ONLY eventual.viagem ALTER COLUMN id SET DEFAULT nextval('eventual.v
 
 
 --
--- TOC entry 4034 (class 2604 OID 816623)
+-- TOC entry 4080 (class 2604 OID 816623)
 -- Name: token_validacao_email id; Type: DEFAULT; Schema: web; Owner: -
 --
 
@@ -749,7 +752,7 @@ ALTER TABLE ONLY web.token_validacao_email ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
--- TOC entry 4021 (class 2604 OID 799670)
+-- TOC entry 4067 (class 2604 OID 799670)
 -- Name: usuario id; Type: DEFAULT; Schema: web; Owner: -
 --
 
@@ -757,8 +760,8 @@ ALTER TABLE ONLY web.usuario ALTER COLUMN id SET DEFAULT nextval('web.usuario_id
 
 
 --
--- TOC entry 4302 (class 0 OID 800010)
--- Dependencies: 436
+-- TOC entry 4349 (class 0 OID 800010)
+-- Dependencies: 437
 -- Data for Name: documento; Type: TABLE DATA; Schema: eventual; Owner: -
 --
 
@@ -767,8 +770,8 @@ COPY eventual.documento (id, documento_tipo_nome, tamanho, hash, data_upload, va
 
 
 --
--- TOC entry 4303 (class 0 OID 800024)
--- Dependencies: 437
+-- TOC entry 4350 (class 0 OID 800024)
+-- Dependencies: 438
 -- Data for Name: documento_empresa; Type: TABLE DATA; Schema: eventual; Owner: -
 --
 
@@ -777,8 +780,8 @@ COPY eventual.documento_empresa (id, empresa_cnpj) FROM stdin;
 
 
 --
--- TOC entry 4310 (class 0 OID 800210)
--- Dependencies: 444
+-- TOC entry 4357 (class 0 OID 800210)
+-- Dependencies: 445
 -- Data for Name: documento_motorista; Type: TABLE DATA; Schema: eventual; Owner: -
 --
 
@@ -787,27 +790,30 @@ COPY eventual.documento_motorista (id, motorista_id) FROM stdin;
 
 
 --
--- TOC entry 4300 (class 0 OID 800002)
--- Dependencies: 434
+-- TOC entry 4347 (class 0 OID 800002)
+-- Dependencies: 435
 -- Data for Name: documento_tipo; Type: TABLE DATA; Schema: eventual; Owner: -
 --
 
 COPY eventual.documento_tipo (nome, descricao) FROM stdin;
-CONTRATO_SOCIAL	Contrato social da empresa
 PROCURACAO	Procuração
 CRLV	Certificado de Registro e Licenciamento de Veículo
 CNH	Carteira Nacional de Habilitação
 NOTA_FISCAL	Nota Fiscal
-IDENTIDADE_SOCIO	Documento de identidade do sócio
 CNAE_FISCAL	CNAE Fiscal
 CARTAO_CNPJ	Cartão CNPJ
 ALVARA	Alvará
+LAUDO_INSPECAO	Laudo Inspeção
+APOLICE_SEGURO	Apólice Seguro
+COMPROVANTE_PAGAMENTO	Comprovante Pagamento
+CONTRATO_SOCIAL	Contrato Social da Empresa
+IDENTIDADE_SOCIO	Documento de Identidade do Sócio
 \.
 
 
 --
--- TOC entry 4306 (class 0 OID 800073)
--- Dependencies: 440
+-- TOC entry 4353 (class 0 OID 800073)
+-- Dependencies: 441
 -- Data for Name: documento_tipo_permissao; Type: TABLE DATA; Schema: eventual; Owner: -
 --
 
@@ -816,8 +822,8 @@ COPY eventual.documento_tipo_permissao (tipo_nome, entidade_tipo) FROM stdin;
 
 
 --
--- TOC entry 4304 (class 0 OID 800041)
--- Dependencies: 438
+-- TOC entry 4351 (class 0 OID 800041)
+-- Dependencies: 439
 -- Data for Name: documento_usuario; Type: TABLE DATA; Schema: eventual; Owner: -
 --
 
@@ -826,8 +832,8 @@ COPY eventual.documento_usuario (id, usuario_id) FROM stdin;
 
 
 --
--- TOC entry 4305 (class 0 OID 800056)
--- Dependencies: 439
+-- TOC entry 4352 (class 0 OID 800056)
+-- Dependencies: 440
 -- Data for Name: documento_veiculo; Type: TABLE DATA; Schema: eventual; Owner: -
 --
 
@@ -836,8 +842,8 @@ COPY eventual.documento_veiculo (id, veiculo_placa) FROM stdin;
 
 
 --
--- TOC entry 4316 (class 0 OID 808150)
--- Dependencies: 450
+-- TOC entry 4363 (class 0 OID 808150)
+-- Dependencies: 451
 -- Data for Name: documento_viagem; Type: TABLE DATA; Schema: eventual; Owner: -
 --
 
@@ -846,80 +852,33 @@ COPY eventual.documento_viagem (id, viagem_id) FROM stdin;
 
 
 --
--- TOC entry 4322 (class 0 OID 816815)
--- Dependencies: 456
+-- TOC entry 4369 (class 0 OID 816815)
+-- Dependencies: 457
 -- Data for Name: fluxo_pendencia; Type: TABLE DATA; Schema: eventual; Owner: -
 --
 
-COPY eventual.fluxo_pendencia (id, criado_em, entidade_tipo, entidade_id, status, analista, motivo) FROM stdin;
-1	2025-11-24 10:50:09.885782	EMPRESA	03929471000177	AGUARDANDO_ANALISE	\N	\N
-9	2025-12-08 14:56:53.161571	VEICULO	BBB11111	AGUARDANDO_ANALISE	\N	\N
-23	2025-12-10 14:40:57.207103	VEICULO	BBB11111	EM_ANALISE	anal@anal	\N
-24	2025-12-15 08:06:02.823267	EMPRESA	11111111111121	AGUARDANDO_ANALISE	\N	\N
-25	2025-12-15 08:07:54.08465	EMPRESA	11111111113331	AGUARDANDO_ANALISE	\N	\N
-26	2025-12-15 08:47:09.626316	EMPRESA	99999999999999999	AGUARDANDO_ANALISE	\N	\N
-27	2025-12-15 08:56:14.144486	EMPRESA	888787878787887	AGUARDANDO_ANALISE	\N	\N
-28	2025-12-15 11:44:42.294363	EMPRESA	47584754857	AGUARDANDO_ANALISE	\N	\N
-29	2025-12-15 11:54:37.502643	EMPRESA	398293829382983	AGUARDANDO_ANALISE	\N	\N
-30	2025-12-15 12:06:00.985419	EMPRESA	666666666666666	AGUARDANDO_ANALISE	\N	\N
-31	2025-12-15 12:20:50.353761	EMPRESA	33333333333	AGUARDANDO_ANALISE	\N	\N
-32	2025-12-15 12:27:21.656074	EMPRESA	444444444	AGUARDANDO_ANALISE	\N	\N
-33	2025-12-15 12:32:20.905162	EMPRESA	55555555	AGUARDANDO_ANALISE	\N	\N
-34	2025-12-15 12:47:32.606014	EMPRESA	666666666	AGUARDANDO_ANALISE	\N	\N
-35	2025-12-15 14:00:45.841318	EMPRESA	77777777	AGUARDANDO_ANALISE	\N	\N
-36	2025-12-16 09:02:51.437437	MOTORISTA	1	AGUARDANDO_ANALISE	\N	\N
-37	2025-12-16 11:42:09.296079	EMPRESA	888888888	AGUARDANDO_ANALISE	\N	\N
-38	2025-12-16 11:46:33.542624	EMPRESA	9999999999	AGUARDANDO_ANALISE	\N	\N
-39	2025-12-16 11:49:15.941454	EMPRESA	10000000000000000	AGUARDANDO_ANALISE	\N	\N
-40	2025-12-16 12:04:11.162598	EMPRESA	11111111111	AGUARDANDO_ANALISE	\N	\N
-41	2025-12-16 12:06:39.246458	EMPRESA	121212121212	AGUARDANDO_ANALISE	\N	\N
-42	2025-12-16 12:52:31.34317	EMPRESA	111111111111111	AGUARDANDO_ANALISE	\N	\N
-43	2025-12-16 13:31:00.472385	EMPRESA	222222221211111112111	AGUARDANDO_ANALISE	\N	\N
-44	2025-12-17 12:51:40.973861	EMPRESA	222222221211111112111	EM_ANALISE	anal@anal	\N
-52	2026-01-06 11:39:06.06737	EMPRESA	111111111111111	EM_ANALISE	anal@anal	\N
-56	2026-01-06 12:11:51.493939	EMPRESA	111111111111111	APROVADO	anal@anal	\N
-57	2026-01-07 12:48:40.097817	EMPRESA	00865046000173	AGUARDANDO_ANALISE	\N	\N
-58	2026-01-07 13:24:49.056205	EMPRESA	87788931000184	AGUARDANDO_ANALISE	\N	\N
-59	2026-01-09 08:52:09.778803	EMPRESA	86464646464	AGUARDANDO_ANALISE	\N	\N
-60	2026-01-09 08:56:00.565115	EMPRESA	88888898989888	AGUARDANDO_ANALISE	\N	\N
-61	2026-01-09 12:09:42.604514	EMPRESA	222222221211111112111	APROVADO	anal@anal	\N
-62	2026-01-09 12:10:04.87464	VEICULO	BBB11111	REJEITADO	anal@anal	nopnopn
-63	2026-01-12 10:48:56.066904	EMPRESA	4545454545	AGUARDANDO_ANALISE	\N	\N
-64	2026-01-12 12:36:48.265181	EMPRESA	4545454545	EM_ANALISE	anal@anal	\N
-65	2026-01-12 12:38:05.473332	EMPRESA	88888898989888	EM_ANALISE	anal@anal	\N
-66	2026-01-12 12:40:30.782647	EMPRESA	4545454545	REJEITADO	anal@anal	nao serviu
-67	2026-01-12 12:42:08.633751	EMPRESA	88888898989888	APROVADO	anal@anal	\N
-68	2026-01-12 12:42:42.338641	EMPRESA	4545454545	AGUARDANDO_ANALISE	\N	\N
-69	2026-01-12 12:42:59.21312	EMPRESA	4545454545	EM_ANALISE	anal@anal	\N
-70	2026-03-02 18:49:45.619653	VEICULO	PPP9999	EM_ANALISE	\N	\N
-72	2026-03-02 19:39:37.062381	VEICULO	GGG6666	AGUARDANDO_ANALISE	\N	\N
-71	2026-03-02 19:39:11.815268	MOTORISTA	2	EM_ANALISE	\N	\N
-73	2026-03-02 19:55:53.346829	VEICULO	EEE3333	AGUARDANDO_ANALISE	\N	\N
-74	2026-03-02 19:59:22.553762	MOTORISTA	4	AGUARDANDO_ANALISE	\N	\N
-75	2026-03-02 19:59:44.616476	MOTORISTA	3	AGUARDANDO_ANALISE	\N	\N
-76	2026-03-02 20:17:25.884295	EMPRESA	3333333331313	AGUARDANDO_ANALISE	\N	\N
-77	2026-03-02 22:05:06.09215	EMPRESA	03929471000177	EM_ANALISE	ana@ana	\N
-78	2026-03-02 22:19:15.672714	EMPRESA	398293829382983	EM_ANALISE	ana@ana	\N
+COPY eventual.fluxo_pendencia (id, criado_em, entidade_tipo, entidade_id, status, analista, motivo, dados_propostos) FROM stdin;
 \.
 
 
 --
--- TOC entry 4308 (class 0 OID 800195)
--- Dependencies: 442
+-- TOC entry 4355 (class 0 OID 800195)
+-- Dependencies: 443
 -- Data for Name: motorista; Type: TABLE DATA; Schema: eventual; Owner: -
 --
 
 COPY eventual.motorista (id, empresa_cnpj, cpf, cnh, email, nome, criado_em, eventual_status) FROM stdin;
-1	03929471000177	111111	1111111	dggffjkfj@cjhcf	motoristinha	2025-11-05 18:35:24.690815	\N
 2	3333333331313	12111111111	7777777777	joseh@lala	joseh	2026-03-02 13:47:12.48619	AGUARDANDO_ANALISE
-4	3333333331313	99999999988	9999999898989	\N	manuelito boas-novas	2026-03-02 22:59:22.068006	AGUARDANDO_ANALISE
-3	3333333331313	11111111111	4984938778	\N	josé antunes gabarito	2026-03-02 15:49:20.948826	AGUARDANDO_ANALISE
+4	3333333331313	99999999988	9999999898989	\N	manuelito boas-novas	2026-03-02 22:59:22.068006	REJEITADO
+1	03929471000177	111111	1111111	dggffjkfj@cjhcf	motoristinha	2025-11-05 18:35:24.690815	REJEITADO
+3	3333333331313	11111111111	4984938778	\N	josé antunes gabarito HONESTO e de fé	2026-03-02 15:49:20.948826	AGUARDANDO_ANALISE
+5	3333333331313	65656565655	65656556	\N	joão válido	2026-03-05 19:22:32.529586	AGUARDANDO_ANALISE
 \.
 
 
 --
--- TOC entry 4315 (class 0 OID 808120)
--- Dependencies: 449
+-- TOC entry 4362 (class 0 OID 808120)
+-- Dependencies: 450
 -- Data for Name: passageiro; Type: TABLE DATA; Schema: eventual; Owner: -
 --
 
@@ -928,8 +887,8 @@ COPY eventual.passageiro (id, viagem_id, nome, cpf) FROM stdin;
 
 
 --
--- TOC entry 4319 (class 0 OID 816800)
--- Dependencies: 453
+-- TOC entry 4366 (class 0 OID 816800)
+-- Dependencies: 454
 -- Data for Name: status_pendencia; Type: TABLE DATA; Schema: eventual; Owner: -
 --
 
@@ -942,8 +901,8 @@ REJEITADO	Rejeitado
 
 
 --
--- TOC entry 4320 (class 0 OID 816807)
--- Dependencies: 454
+-- TOC entry 4367 (class 0 OID 816807)
+-- Dependencies: 455
 -- Data for Name: tipo_entidade_pendencia; Type: TABLE DATA; Schema: eventual; Owner: -
 --
 
@@ -955,18 +914,18 @@ MOTORISTA	Motorista
 
 
 --
--- TOC entry 4313 (class 0 OID 808062)
--- Dependencies: 447
+-- TOC entry 4360 (class 0 OID 808062)
+-- Dependencies: 448
 -- Data for Name: viagem; Type: TABLE DATA; Schema: eventual; Owner: -
 --
 
-COPY eventual.viagem (id, nome_contratante, cpf_cnpj_contratante, regiao_codigo, municipio_origem, municipio_destino, ida_em, volta_em, viagem_tipo, veiculo_placa, motorista_id, motorista_aux_id, descricao) FROM stdin;
+COPY eventual.viagem (id, nome_contratante, cpf_cnpj_contratante, regiao_codigo, municipio_origem, municipio_destino, ida_em, volta_em, viagem_tipo, veiculo_placa, motorista_id, motorista_aux_id, descricao, empresa_cnpj) FROM stdin;
 \.
 
 
 --
--- TOC entry 4311 (class 0 OID 808001)
--- Dependencies: 445
+-- TOC entry 4358 (class 0 OID 808001)
+-- Dependencies: 446
 -- Data for Name: viagem_tipo; Type: TABLE DATA; Schema: eventual; Owner: -
 --
 
@@ -984,8 +943,8 @@ Outros
 
 
 --
--- TOC entry 4297 (class 0 OID 799650)
--- Dependencies: 431
+-- TOC entry 4344 (class 0 OID 799650)
+-- Dependencies: 432
 -- Data for Name: papel; Type: TABLE DATA; Schema: web; Owner: -
 --
 
@@ -998,8 +957,8 @@ ADMIN
 
 
 --
--- TOC entry 4318 (class 0 OID 816620)
--- Dependencies: 452
+-- TOC entry 4365 (class 0 OID 816620)
+-- Dependencies: 453
 -- Data for Name: token_validacao_email; Type: TABLE DATA; Schema: web; Owner: -
 --
 
@@ -1007,12 +966,21 @@ COPY web.token_validacao_email (id, usuario_id, token, criado_em, expira_em) FRO
 23	55	17IvFEv8zoKAXuHGzuzr6Ybbi51IsvVaHWDVWFoi6Fc	2025-12-16 15:04:11.183798	2025-12-17 15:04:11.183801
 24	56	WHhwnfZbp_ElMFM4zS88l5K_wc1-xM7_Ddg3RIS83jk	2025-12-16 15:06:39.251439	2025-12-17 15:06:39.251442
 30	64	MFqsq3oDjh_wOy2WGLuZPa5uashF7D75LWgCG6gx4u0	2026-01-09 11:52:09.815353	2026-01-10 11:52:09.815356
+35	80	9E119764762B8BBAC9D13394A687AD61C528F8F370C3EFC016E33D665299A40A	2026-03-08 16:27:59.483559	2026-03-09 16:27:59.483606
+37	82	3450E6B8E7E60AAEF870E24AC3095991F483F3FD67D6B1EBA6CD9D7813A7CA6D	2026-03-08 16:36:53.048076	2026-03-09 16:36:53.048076
+38	83	A6F8AAFA1FEB4763BE4CA1EE34023C54C98BBA57AEAFD7F7C6F6BDD31DDD6457	2026-03-08 16:39:52.934511	2026-03-09 16:39:52.934553
+39	84	851248A8DB3088B7353F8E9970C983685AD363D667B5CE1CF5C8B0404F6C5CAA	2026-03-08 16:42:57.420063	2026-03-09 16:42:57.420064
+40	85	D09510C56CFAF68BE27E56F4EBD44240F213F8865E3665B35593D337365B7EB5	2026-03-08 16:47:45.123428	2026-03-09 16:47:45.123428
+41	86	45F3E2042E2D6EAF6E921E5F1E1F9F8C28DF96E584C93C52206B0D61F2FB9814	2026-03-08 16:48:47.408562	2026-03-09 16:48:47.408606
+42	87	2AA6C7D902BBD1A3A7FE1DFC436A8425CEE0CDC052AF7CECDB80BA0B15D283BA	2026-03-08 16:49:41.320905	2026-03-09 16:49:41.320949
+43	88	EB103292AD101A11FC7806B50126FE967243D688A04924B033D7C740AB041ECE	2026-03-08 16:51:11.646282	2026-03-09 16:51:11.646321
+44	89	02D20EA910909E25E0DC5B44D4A55D61F6FF97FED675CA926BEF60DB9E9B42C1	2026-03-08 16:54:30.550162	2026-03-09 16:54:30.550192
 \.
 
 
 --
--- TOC entry 4299 (class 0 OID 799667)
--- Dependencies: 433
+-- TOC entry 4346 (class 0 OID 799667)
+-- Dependencies: 434
 -- Data for Name: usuario; Type: TABLE DATA; Schema: web; Owner: -
 --
 
@@ -1021,6 +989,9 @@ COPY web.usuario (id, papel_nome, email, nome, cpf, data_nascimento, telefone, s
 60	EMPRESA	marcelohz+olha@gmail.com	OLHA, MANO	\N	\N	\N	scrypt:32768:8:1$fwuZdzJP0CQr1MCy$1a4582c546a9efd4793953a07600e31e8c41b67c682026bfc0fd320334bf1083e3e7e662e94189c50197a902af95fc830e784bb44260b6c6bfa1e1eadb770f4d	00865046000173	2026-01-07 13:03:04.950977	2026-01-07 13:03:30.481063	t	t
 64	EMPRESA	skcjwij@iksjncfwic	76777	\N	\N	\N	\N	86464646464	2026-01-09 08:52:09.778803	2026-01-09 08:52:09.778803	t	f
 74	ANALISTA	ana@ana	Ana Analista	\N	\N	\N	AQAAAAIAAYagAAAAEKNZvVBcnme933eYWGEONHGwFU055WdGF0Xcf+0ti8yhMnkR95P3hvfLkGHlbiXWBg==	\N	2026-03-03 00:44:52.269638	2026-03-02 21:44:52.871984	t	t
+80	EMPRESA	tt@tt	Nova Empresa	\N	\N	\N	fc9e5128-343c-439a-8034-eb53535c7046	199191919119	2026-03-08 16:27:59.2451	2026-03-08 16:27:59.550483	t	f
+85	EMPRESA	papa@ppa	Nova Empresa	\N	\N	\N	d62339b7-e28d-4c91-a202-117d2a41e552	6765444444444	2026-03-08 16:47:45.04466	2026-03-08 16:47:45.526868	t	f
+88	EMPRESA	ppppppp@ssssssssssss	Nova Empresa	\N	\N	\N	aca0ccd2-5823-4872-ab8c-d56908581157	324334343434	2026-03-08 16:51:11.505104	2026-03-08 16:51:11.890412	t	f
 1	EMPRESA	master@master	Master User	\N	\N	\N	scrypt:32768:8:1$vUTnyBOcclIzTdHJ$e4b7b578e2589c1cb45370f29087325862aab982966880e5c227132c8d95050c19aec10aa1975496f98bb072e1fdfda5aef534377a47636ea0fd3b6b32851cd7	03929471000177	2025-10-20 10:03:33.915375	2025-10-20 10:03:33.915375	t	t
 3	EMPRESA	oi@oi	oioi	\N	\N	\N	scrypt:32768:8:1$U6zR2voA2GjhqaaV$f10a24823f57b098ddbc2b949a33c05c5476ce4f57b9d1e122238f2962249271d4b5933cf8b1e032ef0f1ed8d154bd59000e5862d3c08f7c79f94d92c671cbc9	123456	2025-10-24 10:39:53.851594	2025-10-24 10:39:53.851594	t	t
 4	EMPRESA	dois@dois	razao 2	\N	\N	\N	scrypt:32768:8:1$BLZQrce2GnvQuDY2$fc927c18ce988e1531570179670b2495ad1348d69999bac62b5e12f09873006ea556a8a2cc96ffd27b7b62697380c828b78cb02410b8bc96db97678f8a935f50	222222222222222222	2025-10-28 08:56:20.623233	2025-10-28 08:56:20.623233	t	t
@@ -1030,6 +1001,12 @@ COPY web.usuario (id, papel_nome, email, nome, cpf, data_nascimento, telefone, s
 61	EMPRESA	marcelohz+yeti@gmail.com	YETI	\N	\N	\N	scrypt:32768:8:1$lG2gpMRCs5nRBi2E$09956ed97e12818925cf8e9b138f535c918f5db11b52824a3fc261df94a12f88fbfb433e9e2393e08e50c13af725c42ee9a89943de551394e855fdcd69c17023	87788931000184	2026-01-07 13:24:49.056205	2026-01-07 13:25:06.041528	t	t
 65	EMPRESA	lalala@clclwdlc.com	88888888898989	\N	\N	\N	\N	88888898989888	2026-01-09 08:56:00.565115	2026-01-09 08:56:12.176372	t	t
 68	EMPRESA	net@net	net	\N	\N	\N	AQAAAAIAAYagAAAAEEAFwXnSqxkorD1NYBRAjNmzPwvRLDtJpMSIe/WW+p/zrnDefXZ6MUJuwKck3ylGwQ==	3333333331313	2026-03-02 13:07:06.525791	2026-03-02 13:07:06.525791	t	t
+75	EMPRESA	lolo@lolo	nnnnn	\N	\N	\N	AQAAAAIAAYagAAAAEND5Fbq55Mohs9jMlFkt0GzUm/XgdD98iXq78YfMhd3DR6gpAypPuhiERZfcbyRZHw==	777777766666	2026-03-04 18:28:03.680776	2026-03-04 18:28:03.680776	t	t
+78	EMPRESA	ss@ss	Nova Empresa	\N	\N	\N	master	141414141414	2026-03-08 17:56:40.563885	2026-03-08 14:56:40.721082	t	t
+81	EMPRESA	tgtg@fgtf	Nova Empresa	\N	\N	\N	AQAAAAIAAYagAAAAELISO38mFw4yiyrRgOpHV9sh34hG8AfOTgyXuc5vuN5bvsg3cR6pnwdLYP3q6boNxg==	878778877887	2026-03-08 16:33:18.494516	2026-03-08 16:33:18.807478	t	t
+82	EMPRESA	i@i	Nova Empresa	\N	\N	\N	4202af36-bb01-4508-b679-ece681a9c74d	9637868758676	2026-03-08 16:36:52.947936	2026-03-08 16:36:53.400892	t	f
+86	EMPRESA	ssssssss@ssdssssssssssss	Nova Empresa	\N	\N	\N	cc850ce7-6a9f-4285-9f89-6fdda349f502	8484844848656	2026-03-08 16:48:47.235635	2026-03-08 16:48:47.626495	t	f
+89	EMPRESA	dddddddddddd@kkkkkkkkkk	Nova Empresa	\N	\N	\N	a4e562bd-b6a0-4c29-b473-c9bbc4a6cc95	888878787878787	2026-03-08 16:54:30.414697	2026-03-08 16:54:30.778998	t	f
 31	EMPRESA	newempresa@example.com	Empresa Nova S.A.	\N	\N	\N	scrypt:32768:8:1$jYzkzWwh5abWqMxJ$c824a83363254fbb530ecdbff399aef86f1d28a30472ab3530be49e74c6ac6ba451e4318edb102d6797cbd50edc68fbd1a225ea684f38385932229b221e74477	11111111000199	2025-11-18 12:07:17.433554	2025-11-18 12:07:17.433554	f	t
 54	EMPRESA	marcelohz+dez@gmail.com	1000000000	\N	\N	\N	\N	10000000000000000	2025-12-16 11:49:15.941454	2025-12-16 11:49:29.971019	t	t
 55	EMPRESA	marcelohz+onze@gmail.com	111111111111111111	\N	\N	\N	\N	11111111111	2025-12-16 12:04:11.162598	2025-12-16 12:04:11.162598	t	f
@@ -1069,21 +1046,26 @@ COPY web.usuario (id, papel_nome, email, nome, cpf, data_nascimento, telefone, s
 50	EMPRESA	marcelohz+seis@gmail.com	66666666666	\N	\N	\N	scrypt:32768:8:1$yOvgOrBwtN91OkYq$a3c7cbb9f2271a5c61d4e681bc7a5f51f7188a32e573ca58249e34a28ed047997b197e051cc721eaa0f859d1db17d2426e8e26325d8bc5cbab6124c91cd08106	666666666	2025-12-15 12:47:32.606014	2025-12-15 13:03:25.104823	t	t
 51	EMPRESA	marcelohz+sete@gmail.com	777777	\N	\N	\N	scrypt:32768:8:1$7uZOptcCTcddd1dP$1e999954098536d887d2a422d928a161abc1373b0604143f519dade76c6619d4c4986feb387998b166b86fc42a37c93873eedddfbb44c4596e83084016d1541f	77777777	2025-12-15 14:00:45.841318	2025-12-15 15:07:02.154851	t	t
 73	ADMIN	adm@adm	joão administrador	\N	\N	\N	AQAAAAIAAYagAAAAEEAFwXnSqxkorD1NYBRAjNmzPwvRLDtJpMSIe/WW+p/zrnDefXZ6MUJuwKck3ylGwQ==	\N	2026-03-02 13:07:06.525791	2026-03-02 13:07:06.525791	t	t
+76	USUARIO_EMPRESA	juan@juan	Juanito Boas-novas	66621212126	\N	\N	master	3333333331313	2026-03-08 17:17:04.359703	2026-03-08 14:17:04.854083	t	t
+79	EMPRESA	five@five	Nova Empresa	\N	\N	\N	AQAAAAIAAYagAAAAEBEG0X/iaPQeLnhmvD9mLSyvsgKyfuI4aFy/GhLJD4BKqIK9d/skvJccu7s+kcVF7g==	55555555555	2026-03-08 18:22:25.207144	2026-03-08 15:22:25.479319	t	t
+83	EMPRESA	serio@serio	Nova Empresa	\N	\N	\N	5e6c2e3b-7e23-4c12-9703-47560ce14928	2222222222222	2026-03-08 16:39:52.801309	2026-03-08 16:39:53.178618	t	f
+84	EMPRESA	aaaaaaaaaaaaaaaa@aaaaaaaaaaaaaaaa	Nova Empresa	\N	\N	\N	6e364a9a-d3cd-4e47-bbf2-6319948c095d	333333434344	2026-03-08 16:42:57.320658	2026-03-08 16:42:57.78705	t	f
+87	EMPRESA	sdkqowdk@dldlod	Nova Empresa	\N	\N	\N	17205d01-1475-405c-b149-d6d5bda63171	2444444444444	2026-03-08 16:49:41.17483	2026-03-08 16:49:41.55356	t	f
 \.
 
 
 --
--- TOC entry 4336 (class 0 OID 0)
--- Dependencies: 435
+-- TOC entry 4383 (class 0 OID 0)
+-- Dependencies: 436
 -- Name: documento_id_seq; Type: SEQUENCE SET; Schema: eventual; Owner: -
 --
 
-SELECT pg_catalog.setval('eventual.documento_id_seq', 26, true);
+SELECT pg_catalog.setval('eventual.documento_id_seq', 95, true);
 
 
 --
--- TOC entry 4337 (class 0 OID 0)
--- Dependencies: 443
+-- TOC entry 4384 (class 0 OID 0)
+-- Dependencies: 444
 -- Name: documento_motorista_id_seq; Type: SEQUENCE SET; Schema: eventual; Owner: -
 --
 
@@ -1091,26 +1073,26 @@ SELECT pg_catalog.setval('eventual.documento_motorista_id_seq', 1, false);
 
 
 --
--- TOC entry 4338 (class 0 OID 0)
--- Dependencies: 455
+-- TOC entry 4385 (class 0 OID 0)
+-- Dependencies: 456
 -- Name: fluxo_pendencia_id_seq; Type: SEQUENCE SET; Schema: eventual; Owner: -
 --
 
-SELECT pg_catalog.setval('eventual.fluxo_pendencia_id_seq', 78, true);
+SELECT pg_catalog.setval('eventual.fluxo_pendencia_id_seq', 185, true);
 
 
 --
--- TOC entry 4339 (class 0 OID 0)
--- Dependencies: 441
+-- TOC entry 4386 (class 0 OID 0)
+-- Dependencies: 442
 -- Name: motorista_id_seq; Type: SEQUENCE SET; Schema: eventual; Owner: -
 --
 
-SELECT pg_catalog.setval('eventual.motorista_id_seq', 4, true);
+SELECT pg_catalog.setval('eventual.motorista_id_seq', 6, true);
 
 
 --
--- TOC entry 4340 (class 0 OID 0)
--- Dependencies: 448
+-- TOC entry 4387 (class 0 OID 0)
+-- Dependencies: 449
 -- Name: passageiro_id_seq; Type: SEQUENCE SET; Schema: eventual; Owner: -
 --
 
@@ -1118,8 +1100,8 @@ SELECT pg_catalog.setval('eventual.passageiro_id_seq', 1, false);
 
 
 --
--- TOC entry 4341 (class 0 OID 0)
--- Dependencies: 446
+-- TOC entry 4388 (class 0 OID 0)
+-- Dependencies: 447
 -- Name: viagem_id_seq; Type: SEQUENCE SET; Schema: eventual; Owner: -
 --
 
@@ -1127,25 +1109,25 @@ SELECT pg_catalog.setval('eventual.viagem_id_seq', 1, false);
 
 
 --
--- TOC entry 4342 (class 0 OID 0)
--- Dependencies: 451
+-- TOC entry 4389 (class 0 OID 0)
+-- Dependencies: 452
 -- Name: token_validacao_email_id_seq; Type: SEQUENCE SET; Schema: web; Owner: -
 --
 
-SELECT pg_catalog.setval('web.token_validacao_email_id_seq', 32, true);
+SELECT pg_catalog.setval('web.token_validacao_email_id_seq', 44, true);
 
 
 --
--- TOC entry 4343 (class 0 OID 0)
--- Dependencies: 432
+-- TOC entry 4390 (class 0 OID 0)
+-- Dependencies: 433
 -- Name: usuario_id_seq; Type: SEQUENCE SET; Schema: web; Owner: -
 --
 
-SELECT pg_catalog.setval('web.usuario_id_seq', 74, true);
+SELECT pg_catalog.setval('web.usuario_id_seq', 89, true);
 
 
 --
--- TOC entry 4055 (class 2606 OID 800030)
+-- TOC entry 4101 (class 2606 OID 800030)
 -- Name: documento_empresa documento_empresa_pkey; Type: CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1154,7 +1136,7 @@ ALTER TABLE ONLY eventual.documento_empresa
 
 
 --
--- TOC entry 4065 (class 2606 OID 800215)
+-- TOC entry 4111 (class 2606 OID 800215)
 -- Name: documento_motorista documento_motorista_pkey; Type: CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1163,7 +1145,7 @@ ALTER TABLE ONLY eventual.documento_motorista
 
 
 --
--- TOC entry 4052 (class 2606 OID 800018)
+-- TOC entry 4098 (class 2606 OID 800018)
 -- Name: documento documento_pkey; Type: CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1172,7 +1154,7 @@ ALTER TABLE ONLY eventual.documento
 
 
 --
--- TOC entry 4061 (class 2606 OID 800080)
+-- TOC entry 4107 (class 2606 OID 800080)
 -- Name: documento_tipo_permissao documento_tipo_permissao_pkey; Type: CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1181,7 +1163,7 @@ ALTER TABLE ONLY eventual.documento_tipo_permissao
 
 
 --
--- TOC entry 4050 (class 2606 OID 800008)
+-- TOC entry 4096 (class 2606 OID 800008)
 -- Name: documento_tipo documento_tipo_pkey; Type: CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1190,7 +1172,7 @@ ALTER TABLE ONLY eventual.documento_tipo
 
 
 --
--- TOC entry 4057 (class 2606 OID 800045)
+-- TOC entry 4103 (class 2606 OID 800045)
 -- Name: documento_usuario documento_usuario_pkey; Type: CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1199,7 +1181,7 @@ ALTER TABLE ONLY eventual.documento_usuario
 
 
 --
--- TOC entry 4059 (class 2606 OID 800062)
+-- TOC entry 4105 (class 2606 OID 800062)
 -- Name: documento_veiculo documento_veiculo_pkey; Type: CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1208,7 +1190,7 @@ ALTER TABLE ONLY eventual.documento_veiculo
 
 
 --
--- TOC entry 4075 (class 2606 OID 808154)
+-- TOC entry 4121 (class 2606 OID 808154)
 -- Name: documento_viagem documento_viagem_pkey; Type: CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1217,7 +1199,7 @@ ALTER TABLE ONLY eventual.documento_viagem
 
 
 --
--- TOC entry 4089 (class 2606 OID 816823)
+-- TOC entry 4135 (class 2606 OID 816823)
 -- Name: fluxo_pendencia fluxo_pendencia_pkey; Type: CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1226,7 +1208,7 @@ ALTER TABLE ONLY eventual.fluxo_pendencia
 
 
 --
--- TOC entry 4063 (class 2606 OID 800203)
+-- TOC entry 4109 (class 2606 OID 800203)
 -- Name: motorista motorista_pkey; Type: CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1235,7 +1217,7 @@ ALTER TABLE ONLY eventual.motorista
 
 
 --
--- TOC entry 4071 (class 2606 OID 808127)
+-- TOC entry 4117 (class 2606 OID 808127)
 -- Name: passageiro passageiro_pkey; Type: CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1244,7 +1226,7 @@ ALTER TABLE ONLY eventual.passageiro
 
 
 --
--- TOC entry 4073 (class 2606 OID 808129)
+-- TOC entry 4119 (class 2606 OID 808129)
 -- Name: passageiro passageiro_unique_viagem_cpf; Type: CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1253,7 +1235,7 @@ ALTER TABLE ONLY eventual.passageiro
 
 
 --
--- TOC entry 4083 (class 2606 OID 816806)
+-- TOC entry 4129 (class 2606 OID 816806)
 -- Name: status_pendencia status_pendencia_pkey; Type: CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1262,7 +1244,7 @@ ALTER TABLE ONLY eventual.status_pendencia
 
 
 --
--- TOC entry 4085 (class 2606 OID 816813)
+-- TOC entry 4131 (class 2606 OID 816813)
 -- Name: tipo_entidade_pendencia tipo_entidade_pendencia_pkey; Type: CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1271,7 +1253,7 @@ ALTER TABLE ONLY eventual.tipo_entidade_pendencia
 
 
 --
--- TOC entry 4069 (class 2606 OID 808069)
+-- TOC entry 4115 (class 2606 OID 808069)
 -- Name: viagem viagem_pkey; Type: CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1280,7 +1262,7 @@ ALTER TABLE ONLY eventual.viagem
 
 
 --
--- TOC entry 4067 (class 2606 OID 808007)
+-- TOC entry 4113 (class 2606 OID 808007)
 -- Name: viagem_tipo viagem_tipo_pkey; Type: CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1289,7 +1271,7 @@ ALTER TABLE ONLY eventual.viagem_tipo
 
 
 --
--- TOC entry 4040 (class 2606 OID 799656)
+-- TOC entry 4086 (class 2606 OID 799656)
 -- Name: papel papel_pkey; Type: CONSTRAINT; Schema: web; Owner: -
 --
 
@@ -1298,7 +1280,7 @@ ALTER TABLE ONLY web.papel
 
 
 --
--- TOC entry 4079 (class 2606 OID 816628)
+-- TOC entry 4125 (class 2606 OID 816628)
 -- Name: token_validacao_email token_validacao_email_pkey; Type: CONSTRAINT; Schema: web; Owner: -
 --
 
@@ -1307,7 +1289,7 @@ ALTER TABLE ONLY web.token_validacao_email
 
 
 --
--- TOC entry 4081 (class 2606 OID 816630)
+-- TOC entry 4127 (class 2606 OID 816630)
 -- Name: token_validacao_email token_validacao_email_token_key; Type: CONSTRAINT; Schema: web; Owner: -
 --
 
@@ -1316,7 +1298,7 @@ ALTER TABLE ONLY web.token_validacao_email
 
 
 --
--- TOC entry 4044 (class 2606 OID 799680)
+-- TOC entry 4090 (class 2606 OID 799680)
 -- Name: usuario usuario_cpf_key; Type: CONSTRAINT; Schema: web; Owner: -
 --
 
@@ -1325,7 +1307,7 @@ ALTER TABLE ONLY web.usuario
 
 
 --
--- TOC entry 4046 (class 2606 OID 799678)
+-- TOC entry 4092 (class 2606 OID 799678)
 -- Name: usuario usuario_email_key; Type: CONSTRAINT; Schema: web; Owner: -
 --
 
@@ -1334,7 +1316,7 @@ ALTER TABLE ONLY web.usuario
 
 
 --
--- TOC entry 4048 (class 2606 OID 799676)
+-- TOC entry 4094 (class 2606 OID 799676)
 -- Name: usuario usuario_pkey; Type: CONSTRAINT; Schema: web; Owner: -
 --
 
@@ -1343,7 +1325,7 @@ ALTER TABLE ONLY web.usuario
 
 
 --
--- TOC entry 4053 (class 1259 OID 816934)
+-- TOC entry 4099 (class 1259 OID 816934)
 -- Name: documento_validade_idx; Type: INDEX; Schema: eventual; Owner: -
 --
 
@@ -1351,7 +1333,7 @@ CREATE INDEX documento_validade_idx ON eventual.documento USING btree (validade)
 
 
 --
--- TOC entry 4086 (class 1259 OID 816839)
+-- TOC entry 4132 (class 1259 OID 816839)
 -- Name: fluxo_pendencia_entidade_idx; Type: INDEX; Schema: eventual; Owner: -
 --
 
@@ -1359,7 +1341,7 @@ CREATE INDEX fluxo_pendencia_entidade_idx ON eventual.fluxo_pendencia USING btre
 
 
 --
--- TOC entry 4087 (class 1259 OID 816840)
+-- TOC entry 4133 (class 1259 OID 816840)
 -- Name: fluxo_pendencia_latest_idx; Type: INDEX; Schema: eventual; Owner: -
 --
 
@@ -1367,7 +1349,7 @@ CREATE INDEX fluxo_pendencia_latest_idx ON eventual.fluxo_pendencia USING btree 
 
 
 --
--- TOC entry 4076 (class 1259 OID 816636)
+-- TOC entry 4122 (class 1259 OID 816636)
 -- Name: idx_token_validacao_email_token; Type: INDEX; Schema: web; Owner: -
 --
 
@@ -1375,7 +1357,7 @@ CREATE INDEX idx_token_validacao_email_token ON web.token_validacao_email USING 
 
 
 --
--- TOC entry 4077 (class 1259 OID 816637)
+-- TOC entry 4123 (class 1259 OID 816637)
 -- Name: idx_token_validacao_email_usuario; Type: INDEX; Schema: web; Owner: -
 --
 
@@ -1383,7 +1365,7 @@ CREATE INDEX idx_token_validacao_email_usuario ON web.token_validacao_email USIN
 
 
 --
--- TOC entry 4041 (class 1259 OID 799691)
+-- TOC entry 4087 (class 1259 OID 799691)
 -- Name: idx_usuario_email; Type: INDEX; Schema: web; Owner: -
 --
 
@@ -1391,7 +1373,7 @@ CREATE INDEX idx_usuario_email ON web.usuario USING btree (email);
 
 
 --
--- TOC entry 4042 (class 1259 OID 799692)
+-- TOC entry 4088 (class 1259 OID 799692)
 -- Name: idx_usuario_empresa_cnpj; Type: INDEX; Schema: web; Owner: -
 --
 
@@ -1399,7 +1381,7 @@ CREATE INDEX idx_usuario_empresa_cnpj ON web.usuario USING btree (empresa_cnpj);
 
 
 --
--- TOC entry 4119 (class 2620 OID 832297)
+-- TOC entry 4166 (class 2620 OID 832297)
 -- Name: fluxo_pendencia trg_analista_obrigatorio; Type: TRIGGER; Schema: eventual; Owner: -
 --
 
@@ -1407,7 +1389,7 @@ CREATE TRIGGER trg_analista_obrigatorio BEFORE INSERT OR UPDATE ON eventual.flux
 
 
 --
--- TOC entry 4120 (class 2620 OID 816844)
+-- TOC entry 4167 (class 2620 OID 816844)
 -- Name: fluxo_pendencia trg_evitar_status_repetido; Type: TRIGGER; Schema: eventual; Owner: -
 --
 
@@ -1415,7 +1397,7 @@ CREATE TRIGGER trg_evitar_status_repetido BEFORE INSERT ON eventual.fluxo_penden
 
 
 --
--- TOC entry 4121 (class 2620 OID 816936)
+-- TOC entry 4168 (class 2620 OID 816936)
 -- Name: fluxo_pendencia trg_motivo_obrigatorio; Type: TRIGGER; Schema: eventual; Owner: -
 --
 
@@ -1423,7 +1405,7 @@ CREATE TRIGGER trg_motivo_obrigatorio BEFORE INSERT ON eventual.fluxo_pendencia 
 
 
 --
--- TOC entry 4122 (class 2620 OID 816842)
+-- TOC entry 4169 (class 2620 OID 816842)
 -- Name: fluxo_pendencia trg_valida_entidade; Type: TRIGGER; Schema: eventual; Owner: -
 --
 
@@ -1431,7 +1413,7 @@ CREATE TRIGGER trg_valida_entidade BEFORE INSERT ON eventual.fluxo_pendencia FOR
 
 
 --
--- TOC entry 4118 (class 2620 OID 816854)
+-- TOC entry 4165 (class 2620 OID 816854)
 -- Name: usuario trg_usuario_normalizar_email; Type: TRIGGER; Schema: web; Owner: -
 --
 
@@ -1439,7 +1421,7 @@ CREATE TRIGGER trg_usuario_normalizar_email BEFORE INSERT OR UPDATE OF email ON 
 
 
 --
--- TOC entry 4092 (class 2606 OID 800019)
+-- TOC entry 4138 (class 2606 OID 800019)
 -- Name: documento documento_documento_tipo_nome_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1448,7 +1430,7 @@ ALTER TABLE ONLY eventual.documento
 
 
 --
--- TOC entry 4094 (class 2606 OID 800036)
+-- TOC entry 4140 (class 2606 OID 800036)
 -- Name: documento_empresa documento_empresa_empresa_cnpj_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1457,7 +1439,7 @@ ALTER TABLE ONLY eventual.documento_empresa
 
 
 --
--- TOC entry 4095 (class 2606 OID 800031)
+-- TOC entry 4141 (class 2606 OID 800031)
 -- Name: documento_empresa documento_empresa_id_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1466,7 +1448,7 @@ ALTER TABLE ONLY eventual.documento_empresa
 
 
 --
--- TOC entry 4093 (class 2606 OID 816929)
+-- TOC entry 4139 (class 2606 OID 816929)
 -- Name: documento documento_fluxo_pendencia_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1475,7 +1457,7 @@ ALTER TABLE ONLY eventual.documento
 
 
 --
--- TOC entry 4102 (class 2606 OID 800216)
+-- TOC entry 4148 (class 2606 OID 800216)
 -- Name: documento_motorista documento_motorista_id_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1484,7 +1466,7 @@ ALTER TABLE ONLY eventual.documento_motorista
 
 
 --
--- TOC entry 4103 (class 2606 OID 800221)
+-- TOC entry 4149 (class 2606 OID 800221)
 -- Name: documento_motorista documento_motorista_motorista_id_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1493,7 +1475,7 @@ ALTER TABLE ONLY eventual.documento_motorista
 
 
 --
--- TOC entry 4100 (class 2606 OID 800081)
+-- TOC entry 4146 (class 2606 OID 800081)
 -- Name: documento_tipo_permissao documento_tipo_permissao_tipo_nome_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1502,7 +1484,7 @@ ALTER TABLE ONLY eventual.documento_tipo_permissao
 
 
 --
--- TOC entry 4096 (class 2606 OID 800046)
+-- TOC entry 4142 (class 2606 OID 800046)
 -- Name: documento_usuario documento_usuario_id_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1511,7 +1493,7 @@ ALTER TABLE ONLY eventual.documento_usuario
 
 
 --
--- TOC entry 4097 (class 2606 OID 800051)
+-- TOC entry 4143 (class 2606 OID 800051)
 -- Name: documento_usuario documento_usuario_usuario_id_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1520,7 +1502,7 @@ ALTER TABLE ONLY eventual.documento_usuario
 
 
 --
--- TOC entry 4098 (class 2606 OID 800063)
+-- TOC entry 4144 (class 2606 OID 800063)
 -- Name: documento_veiculo documento_veiculo_id_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1529,7 +1511,7 @@ ALTER TABLE ONLY eventual.documento_veiculo
 
 
 --
--- TOC entry 4099 (class 2606 OID 800068)
+-- TOC entry 4145 (class 2606 OID 800068)
 -- Name: documento_veiculo documento_veiculo_veiculo_placa_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1538,7 +1520,7 @@ ALTER TABLE ONLY eventual.documento_veiculo
 
 
 --
--- TOC entry 4112 (class 2606 OID 808155)
+-- TOC entry 4159 (class 2606 OID 808155)
 -- Name: documento_viagem documento_viagem_id_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1547,7 +1529,7 @@ ALTER TABLE ONLY eventual.documento_viagem
 
 
 --
--- TOC entry 4113 (class 2606 OID 808160)
+-- TOC entry 4160 (class 2606 OID 808160)
 -- Name: documento_viagem documento_viagem_viagem_id_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1556,7 +1538,7 @@ ALTER TABLE ONLY eventual.documento_viagem
 
 
 --
--- TOC entry 4115 (class 2606 OID 816834)
+-- TOC entry 4162 (class 2606 OID 816834)
 -- Name: fluxo_pendencia fluxo_pendencia_analista_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1565,7 +1547,7 @@ ALTER TABLE ONLY eventual.fluxo_pendencia
 
 
 --
--- TOC entry 4116 (class 2606 OID 816824)
+-- TOC entry 4163 (class 2606 OID 816824)
 -- Name: fluxo_pendencia fluxo_pendencia_entidade_tipo_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1574,7 +1556,7 @@ ALTER TABLE ONLY eventual.fluxo_pendencia
 
 
 --
--- TOC entry 4117 (class 2606 OID 816829)
+-- TOC entry 4164 (class 2606 OID 816829)
 -- Name: fluxo_pendencia fluxo_pendencia_status_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1583,7 +1565,7 @@ ALTER TABLE ONLY eventual.fluxo_pendencia
 
 
 --
--- TOC entry 4101 (class 2606 OID 800204)
+-- TOC entry 4147 (class 2606 OID 800204)
 -- Name: motorista motorista_empresa_cnpj_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1592,7 +1574,7 @@ ALTER TABLE ONLY eventual.motorista
 
 
 --
--- TOC entry 4111 (class 2606 OID 808130)
+-- TOC entry 4158 (class 2606 OID 808130)
 -- Name: passageiro passageiro_viagem_id_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1601,7 +1583,16 @@ ALTER TABLE ONLY eventual.passageiro
 
 
 --
--- TOC entry 4104 (class 2606 OID 808100)
+-- TOC entry 4150 (class 2606 OID 832831)
+-- Name: viagem viagem_empresa_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
+--
+
+ALTER TABLE ONLY eventual.viagem
+    ADD CONSTRAINT viagem_empresa_fkey FOREIGN KEY (empresa_cnpj) REFERENCES geral.empresa(cnpj);
+
+
+--
+-- TOC entry 4151 (class 2606 OID 808100)
 -- Name: viagem viagem_motorista_aux_id_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1610,7 +1601,7 @@ ALTER TABLE ONLY eventual.viagem
 
 
 --
--- TOC entry 4105 (class 2606 OID 808095)
+-- TOC entry 4152 (class 2606 OID 808095)
 -- Name: viagem viagem_motorista_id_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1619,7 +1610,7 @@ ALTER TABLE ONLY eventual.viagem
 
 
 --
--- TOC entry 4106 (class 2606 OID 808080)
+-- TOC entry 4153 (class 2606 OID 808080)
 -- Name: viagem viagem_municipio_destino_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1628,7 +1619,7 @@ ALTER TABLE ONLY eventual.viagem
 
 
 --
--- TOC entry 4107 (class 2606 OID 808075)
+-- TOC entry 4154 (class 2606 OID 808075)
 -- Name: viagem viagem_municipio_origem_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1637,7 +1628,7 @@ ALTER TABLE ONLY eventual.viagem
 
 
 --
--- TOC entry 4108 (class 2606 OID 808070)
+-- TOC entry 4155 (class 2606 OID 808070)
 -- Name: viagem viagem_regiao_codigo_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1646,7 +1637,7 @@ ALTER TABLE ONLY eventual.viagem
 
 
 --
--- TOC entry 4109 (class 2606 OID 808090)
+-- TOC entry 4156 (class 2606 OID 808090)
 -- Name: viagem viagem_veiculo_placa_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1655,7 +1646,7 @@ ALTER TABLE ONLY eventual.viagem
 
 
 --
--- TOC entry 4110 (class 2606 OID 808085)
+-- TOC entry 4157 (class 2606 OID 808085)
 -- Name: viagem viagem_viagem_tipo_fkey; Type: FK CONSTRAINT; Schema: eventual; Owner: -
 --
 
@@ -1664,7 +1655,7 @@ ALTER TABLE ONLY eventual.viagem
 
 
 --
--- TOC entry 4114 (class 2606 OID 816631)
+-- TOC entry 4161 (class 2606 OID 816631)
 -- Name: token_validacao_email token_validacao_email_usuario_id_fkey; Type: FK CONSTRAINT; Schema: web; Owner: -
 --
 
@@ -1673,7 +1664,7 @@ ALTER TABLE ONLY web.token_validacao_email
 
 
 --
--- TOC entry 4090 (class 2606 OID 799686)
+-- TOC entry 4136 (class 2606 OID 799686)
 -- Name: usuario usuario_empresa_cnpj_fkey; Type: FK CONSTRAINT; Schema: web; Owner: -
 --
 
@@ -1682,7 +1673,7 @@ ALTER TABLE ONLY web.usuario
 
 
 --
--- TOC entry 4091 (class 2606 OID 799681)
+-- TOC entry 4137 (class 2606 OID 799681)
 -- Name: usuario usuario_papel_nome_fkey; Type: FK CONSTRAINT; Schema: web; Owner: -
 --
 
@@ -1690,7 +1681,7 @@ ALTER TABLE ONLY web.usuario
     ADD CONSTRAINT usuario_papel_nome_fkey FOREIGN KEY (papel_nome) REFERENCES web.papel(nome);
 
 
--- Completed on 2026-03-03 12:31:39
+-- Completed on 2026-03-10 10:13:14
 
 --
 -- PostgreSQL database dump complete
